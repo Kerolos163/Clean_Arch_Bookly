@@ -58,7 +58,7 @@ BookListViewItem(context, BookModel Book) {
                               .copyWith(fontWeight: FontWeight.bold)),
                       const Spacer(),
                       BookRating(
-                          Rating: Book.volumeInfo.averageRating ?? 0,
+                          Rating: Book.volumeInfo.averageRating ?? 0  ,
                           Count: Book.volumeInfo.ratingsCount ?? 0)
                     ],
                   )

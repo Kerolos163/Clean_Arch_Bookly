@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../core/utils/styles.dart';
 
 BookRating(
-    {MAA = MainAxisAlignment.start, required int Rating, required int Count}) {
+    {MAA = MainAxisAlignment.start, required num Rating, required num Count}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 40),
     child: Row(
