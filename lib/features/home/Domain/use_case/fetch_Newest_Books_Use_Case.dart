@@ -2,7 +2,8 @@ import 'package:bookly_app/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/use_case/UseCase.dart';
-import '../Entities/Book_Entitiy.dart';
+
+import '../Entities/Book_Entity.dart';
 import '../repos/HomeRepo.dart';
 
 class FetchNewestBooksUseCase extends UseCase<List<BookEntity>, No_Param> {

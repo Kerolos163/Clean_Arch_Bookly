@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../Domain/Entities/Book_Entitiy.dart';
+import '../../../Domain/Entities/Book_Entity.dart';
 import 'access_info.dart';
 import 'sale_info.dart';
 import 'search_info.dart';

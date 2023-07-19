@@ -1,4 +1,4 @@
-import '../../Domain/Entities/Book_Entitiy.dart';
+import '../../Domain/Entities/Book_Entity.dart';
 
 abstract class HomeLocalDataSourse {
   List<BookEntity> FetchFeatureBooks();

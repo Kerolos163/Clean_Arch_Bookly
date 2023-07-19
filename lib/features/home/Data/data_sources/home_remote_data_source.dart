@@ -1,7 +1,7 @@
 import 'package:bookly_app/core/utils/api_service.dart';
 import 'package:bookly_app/features/home/Data/models/book_model/book_model.dart';
 
-import '../../Domain/Entities/Book_Entitiy.dart';
+import '../../Domain/Entities/Book_Entity.dart';
 
 abstract class HomeRemoteDataSourse {
   Future<List<BookEntity>> FetchFeatureBooks();
