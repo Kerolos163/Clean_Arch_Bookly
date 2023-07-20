@@ -28,19 +28,19 @@ abstract class AppRouter {
         path: Khomeview,
         builder: (context, state) => const homeview(),
       ),
-      GoRoute(
-        path: Kbookdetailsview,
-        builder: (context, state) => BlocProvider(
-          create: (context) => Similar_Books_Cubit(getIt.get<HomeRepoImpl>()),
-          child: BookViewDetails(bookModel: state.extra as BookModel),
-        ),
-      ),
+      // GoRoute(
+      //   path: Kbookdetailsview,
+      //   builder: (context, state) => BlocProvider(
+      //     create: (context) => Similar_Books_Cubit(getIt.get<HomeRepoImpl>()),
+      //     child: BookViewDetails(bookModel: state.extra as BookModel),
+      //   ),
+      // ),
       GoRoute(
         path: KSearchView,
         builder: (context, state) => BlocProvider(
           create: (context) =>
               SearchCubit(getIt.get<searchrepoImp>())..FetchBooks(),
-          child: SearchView(),
+          child:const SearchView(),
         ),
       ),
     ],

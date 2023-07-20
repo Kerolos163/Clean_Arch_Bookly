@@ -1,3 +1,5 @@
+import 'package:bookly_app/features/home/Data/data_sources/home_local_data_source.dart';
+import 'package:bookly_app/features/home/Data/data_sources/home_remote_data_source.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -12,8 +14,8 @@ void SetupServiceLocator() {
   ));
 
   getIt.registerSingleton<HomeRepoImpl>(HomeRepoImpl(
-    getIt.get<ApiService>(),
-  ));
+      homeremotedatasourse: HomeRemoteDataSourseImp(getIt.get<ApiService>()),
+      homelocaldatasourse: HomeLocalDataSourseImp()));
 
   getIt.registerSingleton<searchrepoImp>(searchrepoImp(
     api: getIt.get<ApiService>(),
