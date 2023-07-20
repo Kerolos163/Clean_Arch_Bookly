@@ -31,7 +31,7 @@ class HomeRemoteDataSourseImp extends HomeRemoteDataSourse {
         end_point:
             "volumes?Filtering=free-ebooks&q=programming&Sorting=newest");
     List<BookEntity> Books = GetBookList(data);
-    print(Books[0]);
+    SaveBooksData(Books, kNewestBox);
     return Books;
   }
 
