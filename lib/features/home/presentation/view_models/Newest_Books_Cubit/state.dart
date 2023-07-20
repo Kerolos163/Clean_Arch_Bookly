@@ -1,4 +1,6 @@
 
+import 'package:bookly_app/features/home/Domain/Entities/Book_Entity.dart';
+
 import '../../../Data/models/book_model/book_model.dart';
 import 'cubit.dart';
 
@@ -9,7 +11,7 @@ class Newest_Books_initstate extends Newest_Books_State {}
 class NewestBooksLoadingState extends Newest_Books_State {}
 
 class NewestBooksSuccessState extends Newest_Books_State {
-  List<BookModel> Books;
+  List<BookEntity> Books;
   NewestBooksSuccessState({
     required this.Books,
   });

@@ -28,7 +28,7 @@ class BookDetailsViewBody extends StatelessWidget {
             children: [
               BookDetailsSection(context, bookmodel),
               const SizedBox(height: 16),
-              SimilarBooksListview(context),
+              // SimilarBooksListview(context),
               const SizedBox(height: 40),
             ],
           ),

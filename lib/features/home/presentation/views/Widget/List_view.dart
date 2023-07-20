@@ -26,7 +26,7 @@ Widget BooklyListView(context) {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: CustomBookImage(context,
-                        img: state.Books[index].volumeInfo.imageLinks!.thumbnail
+                        img: state.Books[index].image
                             as String),
                   ),
                 );
