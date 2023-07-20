@@ -19,7 +19,7 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<Failures, List<BookEntity>>> FetchNewestBooks() async {
     try {
-      var Books;
+      List<BookEntity> Books;
       Books = await homelocaldatasourse.FetchNewestBooks();
       if (Books.isNotEmpty) {
         return right(Books);
