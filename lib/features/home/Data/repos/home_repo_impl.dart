@@ -27,6 +27,9 @@ class HomeRepoImpl implements HomeRepo {
       Books = await homeremotedatasourse.FetchNewestBooks();
       return Right(Books);
     } catch (e) {
+      if (e is DioException) {
+        return Left(FailuresServer.fromDioExceptio(e));
+      }
       return Left(FailuresServer(e.toString()));
     }
   }
@@ -41,6 +44,9 @@ class HomeRepoImpl implements HomeRepo {
       var Book = await homeremotedatasourse.FetchFeatureBooks();
       return Right(Book);
     } catch (e) {
+      if (e is DioException) {
+        return Left(FailuresServer.fromDioExceptio(e));
+      }
       return Left(FailuresServer(e.toString()));
     }
   }

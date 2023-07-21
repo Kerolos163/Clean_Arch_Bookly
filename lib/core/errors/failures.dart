@@ -26,9 +26,7 @@ class FailuresServer extends Failures {
       case DioExceptionType.connectionError:
         return FailuresServer("No Internet Connection");
       case DioExceptionType.unknown:
-        return FailuresServer("unexpecyed Error,please try again");
-      default:
-        return FailuresServer("Opps There was an Error, Please Try Again");
+        return FailuresServer("There was an Error,please try again");
     }
   }
   factory FailuresServer.fromResponse(int? statuscode, dynamic response) {
