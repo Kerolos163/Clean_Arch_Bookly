@@ -22,6 +22,7 @@ class HomeRepoImpl implements HomeRepo {
       List<BookEntity> Books;
       Books = await homelocaldatasourse.FetchNewestBooks();
       if (Books.isNotEmpty) {
+        print("Cached");
         return right(Books);
       }
       Books = await homeremotedatasourse.FetchNewestBooks();
@@ -37,12 +38,14 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<Failures, List<BookEntity>>> FetchFeatureBooks() async {
     try {
-      var Cached_Book = await homelocaldatasourse.FetchFeatureBooks();
-      if (Cached_Book.isNotEmpty) {
-        return right(Cached_Book);
+      List<BookEntity> Books;
+      Books = await homelocaldatasourse.FetchFeatureBooks();
+      if (Books.isNotEmpty) {
+        print("Cached");
+        return right(Books);
       }
-      var Book = await homeremotedatasourse.FetchFeatureBooks();
-      return Right(Book);
+      Books = await homeremotedatasourse.FetchFeatureBooks();
+      return Right(Books);
     } catch (e) {
       if (e is DioException) {
         return Left(FailuresServer.fromDioExceptio(e));

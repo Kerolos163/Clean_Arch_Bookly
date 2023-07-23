@@ -27,7 +27,7 @@ void main() async {
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox<BookEntity>(kFeatureBox);
   await Hive.openBox<BookEntity>(kNewestBox);
-  Bloc.observer=simpleblocobserver();
+  Bloc.observer = simpleblocobserver();
   runApp(const Bookly());
 }
 
@@ -41,12 +41,12 @@ class Bookly extends StatelessWidget {
         BlocProvider(
           create: (context) => Feature_Books_Cubit(
             FetchFeatureBooksUseCase(getIt.get<HomeRepoImpl>()),
-          ),
+          )..FetchFeatureBooks(),
         ),
         BlocProvider(
           create: (context) => Newest_Books_Cubit(
             FetchNewestBooksUseCase(getIt.get<HomeRepoImpl>()),
-          ),
+          )..FetchNewestBooks(),
         ),
       ],
       child: MaterialApp.router(
