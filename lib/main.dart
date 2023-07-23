@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/utils/Simple_Bloc_Observer.dart';
 import 'package:bookly_app/core/utils/api_service.dart';
 import 'package:bookly_app/features/home/Data/data_sources/home_local_data_source.dart';
 import 'package:bookly_app/features/home/Data/data_sources/home_remote_data_source.dart';
@@ -26,6 +27,7 @@ void main() async {
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox<BookEntity>(kFeatureBox);
   await Hive.openBox<BookEntity>(kNewestBox);
+  Bloc.observer=simpleblocobserver();
   runApp(const Bookly());
 }
 
