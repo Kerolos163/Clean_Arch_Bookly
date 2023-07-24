@@ -10,9 +10,9 @@ class Feature_Books_Cubit extends Cubit<Feature_Books_State> {
       : super(Feature_Books_initstate());
   static Feature_Books_Cubit get(context) => BlocProvider.of(context);
   final FetchFeatureBooksUseCase featureBooksUseCase;
-  Future<void> FetchFeatureBooks() async {
+  Future<void> FetchFeatureBooks({int pagenumber =0}) async {
     emit(FeatureBooksLoadingState());
-    var result = await featureBooksUseCase.call();
+    var result = await featureBooksUseCase.call(pagenumber);
     result.fold((failure) {
       emit(FeatureBooksFailureState(error: failure.errMessage));
     }, (Books) {

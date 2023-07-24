@@ -41,10 +41,9 @@ class _SplashViewBodyState extends State<SplashViewBody>
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Hero(
-          tag: "Logo",
-          transitionOnUserGestures: true,
-          child: Image.asset(AssetData.logo),
-        ),
+            transitionOnUserGestures: true,
+            tag: "Logo",
+            child: Image.asset(AssetData.logo)),
         const SizedBox(
           height: 5,
         ),

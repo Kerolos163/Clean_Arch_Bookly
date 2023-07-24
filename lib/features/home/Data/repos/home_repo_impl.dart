@@ -36,7 +36,8 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failures, List<BookEntity>>> FetchFeatureBooks() async {
+  Future<Either<Failures, List<BookEntity>>> FetchFeatureBooks(
+      {int pagenumber = 0}) async {
     try {
       List<BookEntity> Books;
       Books = await homelocaldatasourse.FetchFeatureBooks();
