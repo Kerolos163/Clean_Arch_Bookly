@@ -1,7 +1,9 @@
+import 'package:bookly_app/features/home/Domain/Entities/Book_Entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../constants.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/widget/Custom_error_widget.dart';
 import '../../../../../core/widget/custom_Loading_Indicator.dart';
@@ -18,6 +20,7 @@ class _MyListViewState extends State<BooklyListView> {
   late ScrollController _scrollController;
   var NextPage = 1;
   bool isLoading = false;
+  List<BookEntity> books = [];
   @override
   void initState() {
     super.initState();
@@ -49,9 +52,15 @@ class _MyListViewState extends State<BooklyListView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<Feature_Books_Cubit, Feature_Books_State>(
-      builder: (context, state) {
+    return BlocConsumer<Feature_Books_Cubit, Feature_Books_State>(
+      listener: (context, state) {
         if (state is FeatureBooksSuccessState) {
+          books.addAll(state.Books);
+        }
+      },
+      builder: (context, state) {
+        if (state is FeatureBooksSuccessState ||
+            state is FeatureBooksPaginationLoadingState) {
           return Padding(
             padding: const EdgeInsets.only(left: 15),
             child: SizedBox(
@@ -61,17 +70,19 @@ class _MyListViewState extends State<BooklyListView> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      GoRouter.of(context).push(AppRouter.Kbookdetailsview,
-                          extra: state.Books[index]);
+                      GoRouter.of(context).push(
+                        AppRouter.Kbookdetailsview,
+                        extra: books,
+                      );
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15),
                       child: CustomBookImage(context,
-                          img: state.Books[index].image as String),
+                          img: books[index].image ?? KimagetoNullImage),
                     ),
                   );
                 },
-                itemCount: state.Books.length,
+                itemCount: books.length,
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
               ),
