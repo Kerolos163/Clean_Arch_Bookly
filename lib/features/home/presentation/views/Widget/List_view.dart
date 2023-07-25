@@ -11,12 +11,13 @@ import 'custom_BooK_Image_item.dart';
 
 class BooklyListView extends StatefulWidget {
   @override
-  State<StatefulWidget> createState()=> _MyListViewState();
+  State<StatefulWidget> createState() => _MyListViewState();
 }
 
 class _MyListViewState extends State<BooklyListView> {
   late ScrollController _scrollController;
-
+  var NextPage = 1;
+  bool isLoading = false;
   @override
   void initState() {
     super.initState();
@@ -31,14 +32,18 @@ class _MyListViewState extends State<BooklyListView> {
     super.dispose();
   }
 
-  void _scrollListener() {
+  void _scrollListener() async {
     final double scrollPosition = _scrollController.position.pixels;
     final double maxScrollExtent = _scrollController.position.maxScrollExtent;
     final double threshold = maxScrollExtent * 0.7;
 
     if (scrollPosition >= threshold) {
-      Feature_Books_Cubit.get(context).FetchFeatureBooks();
-      print('User has scrolled to 70% of the ListView');
+      if (!isLoading) {
+        isLoading = true;
+        await Feature_Books_Cubit.get(context)
+            .FetchFeatureBooks(pagenumber: NextPage++);
+        isLoading = false;
+      }
     }
   }
 

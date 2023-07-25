@@ -22,7 +22,7 @@ class HomeRepoImpl implements HomeRepo {
       List<BookEntity> Books;
       Books = await homelocaldatasourse.FetchNewestBooks();
       if (Books.isNotEmpty) {
-        print("Cached");
+        print("Cached Newest Books");
         return right(Books);
       }
       Books = await homeremotedatasourse.FetchNewestBooks();
@@ -40,12 +40,12 @@ class HomeRepoImpl implements HomeRepo {
       {int pagenumber = 0}) async {
     try {
       List<BookEntity> Books;
-      Books = await homelocaldatasourse.FetchFeatureBooks();
+      Books = await homelocaldatasourse.FetchFeatureBooks(pagenumber: pagenumber);
       if (Books.isNotEmpty) {
-        print("Cached");
+        print("Cached Feature Books");
         return right(Books);
       }
-      Books = await homeremotedatasourse.FetchFeatureBooks();
+      Books = await homeremotedatasourse.FetchFeatureBooks(pagenumber:pagenumber );
       return Right(Books);
     } catch (e) {
       if (e is DioException) {
