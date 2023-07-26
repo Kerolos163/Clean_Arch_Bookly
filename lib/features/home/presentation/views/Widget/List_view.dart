@@ -98,7 +98,7 @@ class _MyListViewState extends State<BooklyListView> {
         } else if (state is FeatureBooksFailureState) {
           return Error_Widget(Message: state.error);
         } else {
-          return CustomLoadingIndicator();
+          return const FeatureBooksListViewLoadingIndicator();
         }
       },
     );
