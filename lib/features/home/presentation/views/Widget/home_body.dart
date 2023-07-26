@@ -9,30 +9,36 @@ import 'best_seller_List_Item.dart';
 import 'customappbar.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+  const HomeViewBody({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics:const BouncingScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const CustomAppBar(),
-          BooklyListView(),
-          const SizedBox(
-            height: 50,
+    return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: [
+        SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CustomAppBar(),
+              BooklyListView(),
+              const SizedBox(
+                height: 50,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                child: Text("Newest Books", style: Styles.textStyle18),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+            ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
-            child: Text("Newest Books", style: Styles.textStyle18),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          BestSellerListView()
-        ],
-      ),
+        ),
+        const SliverFillRemaining(
+          child: BestSellerListView(),
+        ),
+      ],
     );
   }
 }
