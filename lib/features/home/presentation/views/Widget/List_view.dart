@@ -102,5 +102,4 @@ class _MyListViewState extends State<BooklyListView> {
       },
     );
   }
-
 }
