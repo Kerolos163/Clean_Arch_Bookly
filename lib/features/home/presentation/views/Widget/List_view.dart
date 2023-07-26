@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utils/app_router.dart';
+import '../../../../../core/utils/functions/build_error_snakebar.dart';
 import '../../../../../core/widget/Custom_error_widget.dart';
 import '../../../../../core/widget/custom_Loading_Indicator.dart';
 import '../../view_models/Feature_Books_Cubit/cubit.dart';
@@ -56,11 +57,16 @@ class _MyListViewState extends State<BooklyListView> {
       listener: (context, state) {
         if (state is FeatureBooksSuccessState) {
           books.addAll(state.Books);
+        } else if (state is FeatureBooksPaginationFailureState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            Custom_Error_Widget(state.error),
+          );
         }
       },
       builder: (context, state) {
         if (state is FeatureBooksSuccessState ||
-            state is FeatureBooksPaginationLoadingState) {
+            state is FeatureBooksPaginationLoadingState ||
+            state is FeatureBooksPaginationFailureState) {
           return Padding(
             padding: const EdgeInsets.only(left: 15),
             child: SizedBox(
@@ -96,4 +102,5 @@ class _MyListViewState extends State<BooklyListView> {
       },
     );
   }
+
 }
