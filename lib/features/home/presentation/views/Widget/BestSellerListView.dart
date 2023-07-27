@@ -7,6 +7,7 @@ import '../../../../../core/widget/Custom_error_widget.dart';
 import '../../../../../core/widget/custom_Loading_Indicator.dart';
 import '../../view_models/Newest_Books_Cubit/cubit.dart';
 import '../../view_models/Newest_Books_Cubit/state.dart';
+import 'Newest_Books_ListView_LoadingIndicator.dart';
 import 'best_seller_List_Item.dart';
 
 class BestSellerListView extends StatefulWidget {
@@ -53,7 +54,7 @@ class _BestSellerListViewState extends State<BestSellerListView> {
         } else if (state is NewestBooksFailureState) {
           return Error_Widget(Message: state.error);
         } else {
-          return CustomLoadingIndicator();
+          return const NewestBooksListViewLoadingIndicator();
         }
       },
     );
