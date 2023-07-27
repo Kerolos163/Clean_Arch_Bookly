@@ -20,7 +20,7 @@ class HomeViewBody extends StatefulWidget {
 
 class _HomeViewBodyState extends State<HomeViewBody> {
   final _scrollController = ScrollController();
-  int nextPage = 0;
+  int nextPage = 1;
   bool isLoading = false;
   @override
   void initState() {
