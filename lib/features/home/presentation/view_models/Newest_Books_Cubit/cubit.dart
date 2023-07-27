@@ -11,10 +11,18 @@ class Newest_Books_Cubit extends Cubit<Newest_Books_State> {
   static Newest_Books_Cubit get(context) => BlocProvider.of(context);
   final FetchNewestBooksUseCase fetchNewestBooksUseCase;
   Future<void> FetchNewestBooks({int pagenumber = 0}) async {
-    emit(NewestBooksLoadingState());
+    if (pagenumber == 0) {
+      emit(NewestBooksLoadingState());
+    } else {
+      emit(NewestBooksPaginationLoadingState());
+    }
     var result = await fetchNewestBooksUseCase.call(pagenumber);
     result.fold((failure) {
-      emit(NewestBooksFailureState(error: failure.errMessage));
+      if (pagenumber == 0) {
+        emit(NewestBooksFailureState(error: failure.errMessage));
+      } else {
+        emit(NewestBooksPaginationFailureState(error: failure.errMessage));
+      }
     }, (Books) {
       emit(NewestBooksSuccessState(Books: Books));
     });
