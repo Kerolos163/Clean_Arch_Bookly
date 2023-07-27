@@ -6,13 +6,13 @@ import '../../../../core/use_case/UseCase.dart';
 import '../Entities/Book_Entity.dart';
 import '../repos/HomeRepo.dart';
 
-class FetchNewestBooksUseCase extends UseCase<List<BookEntity>, No_Param> {
+class FetchNewestBooksUseCase extends UseCase<List<BookEntity>, int> {
   final HomeRepo homeRepo;
 
   FetchNewestBooksUseCase(this.homeRepo);
 
   @override
-  Future<Either<Failures, List<BookEntity>>> call([No_Param? param]) async {
-    return await homeRepo.FetchNewestBooks();
+  Future<Either<Failures, List<BookEntity>>> call([int param = 0]) async {
+    return await homeRepo.FetchNewestBooks(pagenumber: param);
   }
 }

@@ -8,11 +8,11 @@ import 'state.dart';
 class Newest_Books_Cubit extends Cubit<Newest_Books_State> {
   Newest_Books_Cubit(this.fetchNewestBooksUseCase)
       : super(Newest_Books_initstate());
-  static Newest_Books_State get(context) => BlocProvider.of(context);
+  static Newest_Books_Cubit get(context) => BlocProvider.of(context);
   final FetchNewestBooksUseCase fetchNewestBooksUseCase;
-  Future<void> FetchNewestBooks() async {
+  Future<void> FetchNewestBooks({int pagenumber = 0}) async {
     emit(NewestBooksLoadingState());
-    var result = await fetchNewestBooksUseCase.call();
+    var result = await fetchNewestBooksUseCase.call(pagenumber);
     result.fold((failure) {
       emit(NewestBooksFailureState(error: failure.errMessage));
     }, (Books) {

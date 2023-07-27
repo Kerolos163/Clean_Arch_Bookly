@@ -17,7 +17,8 @@ class HomeRepoImpl implements HomeRepo {
   HomeRepoImpl(
       {required this.homelocaldatasourse, required this.homeremotedatasourse});
   @override
-  Future<Either<Failures, List<BookEntity>>> FetchNewestBooks() async {
+  Future<Either<Failures, List<BookEntity>>> FetchNewestBooks(
+      {int pagenumber = 0}) async {
     try {
       List<BookEntity> Books;
       Books = await homelocaldatasourse.FetchNewestBooks();
@@ -25,7 +26,7 @@ class HomeRepoImpl implements HomeRepo {
         print("Cached Newest Books");
         return right(Books);
       }
-      Books = await homeremotedatasourse.FetchNewestBooks();
+      Books = await homeremotedatasourse.FetchNewestBooks(pagenumber: pagenumber);
       return Right(Books);
     } catch (e) {
       if (e is DioException) {
@@ -40,12 +41,14 @@ class HomeRepoImpl implements HomeRepo {
       {int pagenumber = 0}) async {
     try {
       List<BookEntity> Books;
-      Books = await homelocaldatasourse.FetchFeatureBooks(pagenumber: pagenumber);
+      Books =
+          await homelocaldatasourse.FetchFeatureBooks(pagenumber: pagenumber);
       if (Books.isNotEmpty) {
         print("Cached Feature Books");
         return right(Books);
       }
-      Books = await homeremotedatasourse.FetchFeatureBooks(pagenumber:pagenumber );
+      Books =
+          await homeremotedatasourse.FetchFeatureBooks(pagenumber: pagenumber);
       return Right(Books);
     } catch (e) {
       if (e is DioException) {

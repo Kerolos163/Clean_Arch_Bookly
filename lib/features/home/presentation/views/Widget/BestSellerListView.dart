@@ -7,44 +7,8 @@ import '../../view_models/Newest_Books_Cubit/cubit.dart';
 import '../../view_models/Newest_Books_Cubit/state.dart';
 import 'best_seller_List_Item.dart';
 
-class BestSellerListView extends StatefulWidget {
+class BestSellerListView extends StatelessWidget {
   const BestSellerListView({Key? key});
-
-  @override
-  _BestSellerListViewState createState() => _BestSellerListViewState();
-}
-
-class _BestSellerListViewState extends State<BestSellerListView> {
-  final _scrollController = ScrollController();
-
-  bool _reached70Percent = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_onScroll);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.removeListener(_onScroll);
-    super.dispose();
-  }
-
-  void _onScroll() {
-    final maxScrollExtent = _scrollController.position.maxScrollExtent;
-    final currentScrollOffset = _scrollController.offset;
-    final viewportHeight = _scrollController.position.viewportDimension;
-    final scrolledPercentage =
-        (currentScrollOffset + viewportHeight) / maxScrollExtent;
-    if (scrolledPercentage >= 0.7 && !_reached70Percent) {
-      setState(() {
-        _reached70Percent = true;
-      });
-      print(
-          "Perform the action you want to do when the user has scrolled to 70%");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +18,7 @@ class _BestSellerListViewState extends State<BestSellerListView> {
           return NotificationListener<ScrollNotification>(
             onNotification: (notification) => true,
             child: ListView.builder(
-              controller: _scrollController,
+              shrinkWrap: true,
               padding: EdgeInsets.zero,
               itemBuilder: (context, index) {
                 return Padding(
